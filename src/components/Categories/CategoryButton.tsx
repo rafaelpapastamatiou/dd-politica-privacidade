@@ -1,82 +1,92 @@
 import React from "react";
-import { Box, Icon, IconProps, Text, VStack } from "@chakra-ui/react";
+import { Box, Text, VStack } from "@chakra-ui/react";
 import { IconType } from "react-icons";
+import { motion } from 'framer-motion'
+import { MotionIcon } from "../MotionIcon";
 
-interface CategoryButtonProps {
+export interface CategoryButtonProps {
   icon: IconType;
   title: string;
-  selected: boolean;
   onClick: () => void;
-}
-
-const baseIconProps: IconProps = {
-  w: 24,
-  h: 24
-}
-
-const defaultBoxStyles = {
-  borderColor: "gray.800",
-}
-
-const defaultIconStyles = {
-  color: "gray.200"
-}
-
-const selectedBoxStyles = {
-  borderColor: "brand.500",
-}
-
-const selectedIconStyles: IconProps = {
-  color: "brand.500"
+  layoutId: string;
 }
 
 export function CategoryButton({
   title,
   icon,
   onClick,
-  selected = false,
+  layoutId,
 }: CategoryButtonProps) {
 
   return (
-    <VStack
-      display='flex'
-      justifyContent='center'
-      maxW={40}
-      w={40}
+    <Box
+      as={motion.div}
+      layoutId={layoutId}
+      display="flex"
+      alignItems="flex-start"
+      justifyContent="center"
+      w={"50%"}
+      p={4}
+      alignSelf="stretch"
+      whileHover={{ scale: 1.1 }}
     >
-      <Box
+      <VStack
         display='flex'
-        w={40}
-        h={40}
         justifyContent='center'
-        alignItems='center'
-        background="gray.900"
-        transition="all 0.4s"
-        borderRadius={32}
-        borderWidth={3}
-        onClick={onClick}
+        maxW={52}
+        w={52}
         _hover={{
-          cursor: 'pointer'
+          cursor: 'pointer',
+          borderColor: "brand.500",
+          svg: {
+            color: "brand.500",
+          },
+          "> div": {
+            cursor: "pointer",
+            borderColor: "brand.500",
+          }
         }}
-        {...(selected ? selectedBoxStyles : defaultBoxStyles)}
       >
-        <Icon
-          as={icon}
+        <Box
+          display='flex'
+          as={motion.div}
+          w={52}
+          h={52}
+          justifyContent='center'
+          alignItems='center'
+          background="gray.900"
           transition="all 0.4s"
-          {...baseIconProps}
-          {...(selected ? selectedIconStyles : defaultIconStyles)}
-        />
-      </Box>
+          borderRadius={32}
+          borderWidth={3}
+          borderColor="gray.900"
+          onClick={(event) => {
+            event.stopPropagation();
 
-      <Text
-        display='flex'
-        flexWrap='wrap'
-        wordBreak='break-all'
-        fontSize={18}
-        color='gray.200'
-      >
-        {title}
-      </Text>
-    </VStack >
+            onClick()
+          }}
+          shadow="md"
+        >
+          <MotionIcon
+            as={icon}
+            w={32}
+            h={32}
+            transition="all 0.4s"
+            color="gray.200"
+          />
+        </Box>
+
+        <Text
+          as={motion.span}
+          display='flex'
+          flexWrap='wrap'
+          wordBreak='break-all'
+          fontSize={24}
+          color='gray.200'
+          textAlign='center'
+        >
+          {title}
+        </Text>
+      </VStack>
+    </Box>
   )
 }

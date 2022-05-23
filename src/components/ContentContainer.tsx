@@ -12,8 +12,11 @@ export function ContentContainer({
   return (
     <VStack
       display='flex'
-      maxW={"1120"}
+      maxW={"900"}
       marginX="auto"
+      px={8}
+      h="auto"
+      overflow="hidden"
     >
       {children}
     </VStack>
