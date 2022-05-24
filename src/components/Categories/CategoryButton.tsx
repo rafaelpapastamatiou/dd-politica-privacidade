@@ -19,9 +19,9 @@ export function CategoryButton({
 }: CategoryButtonProps) {
 
   const w = useBreakpointValue({
-    base: '96%',
+    sm: '96%',
     md: '48%',
-    lg: '32%'
+    lg: '32%',
   })
 
   return (

@@ -23,25 +23,25 @@ export function CategoryCard({
   onClose
 }: CategoryCardProps) {
   const w = useBreakpointValue({
-    base: "100%",
+    sm: "100%",
     md: "auto"
   })
   const maxW = useBreakpointValue({
-    base: "100%",
+    sm: "100%",
     md: "48em"
   })
 
   const h = useBreakpointValue({
-    base: "100%",
+    sm: "100%",
     md: "auto"
   })
   const maxH = useBreakpointValue({
-    base: "100%",
+    sm: "100%",
     md: "80%"
   })
 
   const borderRadius = useBreakpointValue({
-    base: 0,
+    sm: 0,
     md: 32
   })
 
