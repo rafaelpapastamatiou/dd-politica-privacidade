@@ -15,6 +15,7 @@ export function CategoriesRow({
       display='flex'
       maxW='100%'
       alignItems='flex-start'
+      justifyContent="space-between"
       spacing={0}
       flexWrap='wrap'
       p={8}
@@ -22,7 +23,6 @@ export function CategoriesRow({
         ? {
           opacity: 0.4,
           cursor: "disabled",
-          pointerEvents: "none"
         }
         : {}
       )}

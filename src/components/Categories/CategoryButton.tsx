@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, VStack } from "@chakra-ui/react";
+import { Box, Text, useBreakpointValue, VStack } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { motion } from 'framer-motion'
 import { MotionIcon } from "../MotionIcon";
@@ -18,6 +18,12 @@ export function CategoryButton({
   layoutId,
 }: CategoryButtonProps) {
 
+  const w = useBreakpointValue({
+    base: '96%',
+    md: '48%',
+    lg: '32%'
+  })
+
   return (
     <Box
       as={motion.div}
@@ -25,10 +31,9 @@ export function CategoryButton({
       display="flex"
       alignItems="flex-start"
       justifyContent="center"
-      w={"50%"}
-      p={4}
+      w={w}
+      p={6}
       alignSelf="stretch"
-      whileHover={{ scale: 1.1 }}
     >
       <VStack
         display='flex'
@@ -44,8 +49,13 @@ export function CategoryButton({
           "> div": {
             cursor: "pointer",
             borderColor: "brand.500",
+          },
+          "span": {
+            color: "brand.500"
           }
         }}
+        as={motion.div}
+        whileHover={{ scale: 1.15 }}
       >
         <Box
           display='flex'
@@ -61,7 +71,6 @@ export function CategoryButton({
           borderColor="gray.900"
           onClick={(event) => {
             event.stopPropagation();
-
             onClick()
           }}
           shadow="md"
@@ -83,6 +92,7 @@ export function CategoryButton({
           fontSize={24}
           color='gray.200'
           textAlign='center'
+          transition="all 0.4s"
         >
           {title}
         </Text>
